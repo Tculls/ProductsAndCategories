@@ -33,5 +33,10 @@ public class CategoryController : Controller
         return RedirectToAction("Categories");
     }
 
-    [Ht]
+    // [HttpGet("/categories/{categoryId}")]
+    // public IActionResult Category(int categoryId)
+    // {
+    //     Category cgory = _context.Categories
+    //     .Include(categoryProduct => categoryProduct.CategoryProducts)
+    // }
 }
