@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ChefsAndDishes.Models;
+using ProductsAndCategories.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();

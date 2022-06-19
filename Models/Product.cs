@@ -19,7 +19,7 @@ public class Product
     [Required]
     [Range(1, 1000000, ErrorMessage = "Insert a Price")]
     [DataType(DataType.Currency)]
-    public double Price {get; set; }
+    public double? Price {get; set; }
 
     
     public DateTime CreatedAt {get; set; } = DateTime.Now;

@@ -1,7 +1,7 @@
 #pragma warning disable CS8618
 
 using Microsoft.EntityFrameworkCore;
-namespace ChefsAndDishes.Models;
+namespace ProductsAndCategories.Models;
 
 public class ORMContext : DbContext
 {
