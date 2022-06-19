@@ -33,10 +33,25 @@ public class CategoryController : Controller
         return RedirectToAction("Categories");
     }
 
-    // [HttpGet("/categories/{categoryId}")]
-    // public IActionResult Category(int categoryId)
-    // {
-    //     Category cgory = _context.Categories
-    //     .Include(categoryProduct => categoryProduct.CategoryProducts)
-    // }
+    [HttpGet("/categories/{categoryId}")]
+    public IActionResult OneCategory(int categoryId)
+    {
+        Category? categoryDetails = _context.Categories.FirstOrDefault( cat => cat.CategoryId == categoryId);
+        ViewBag.CategoryDetail = categoryDetails;
+
+        var categoryProduct = _context.Products
+        .Include(cat => cat.Associations)
+        .ThenInclude(cat => cat.Product)
+        .FirstOrDefault(cI => cI.CategoryId == categoryId);
+        ViewBag.CategoryProduct = categoryProduct;
+
+        if (categoryDetails == null)
+        {
+            return Categories();
+        }
+
+        return View("Categories");
+
+
+    }
 }
