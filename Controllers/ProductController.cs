@@ -57,4 +57,13 @@ public class ProductController : Controller
 
         return View("Products");
     }
+
+    [HttpPost("category/{productId}/association")]
+    public IActionResult CatProdJoin(Association newAssociation)
+    {
+        _context.Associations.Add(newAssociation);
+        _context.SaveChanges();
+        
+        return Redirect("/products/" + newAssociation.ProductId);
+    }
 }

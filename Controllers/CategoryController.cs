@@ -44,6 +44,12 @@ public class CategoryController : Controller
         .FirstOrDefault(cI => cI.CategoryId == categoryId);
         ViewBag.CategoryProduct = categoryProduct;
 
+        List<Product> selectProduct = _context.Products
+        .Include(prod => prod.Associations)
+        .Where(prod => prod.Associations.All(prod => prod.CategoryId != categoryId))
+        .ToList();
+        ViewBag.selectProduct = selectProduct;
+
         if (categoryDetails == null)
         {
             return Categories();
@@ -51,5 +57,13 @@ public class CategoryController : Controller
 
         return View("Categories");
 
+    }
+    [HttpPost("product/categroy/association")]
+    public IActionResult ProdCatJoin(Association newAssociation)
+    {
+        _context.Associations.Add(newAssociation);
+        _context.SaveChanges();
+
+        return Redirect("/categories/" + newAssociation.CategoryId);
     }
 }

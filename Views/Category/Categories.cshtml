@@ -2,16 +2,23 @@
 @model Association
 
 <div>
-    <h2>Category name goes here</h2>
+    <h2>@ViewBag.CategoryDetail.Name</h2>
 <div>
-    <h3>Related products</h3>
-    <li>products go here</li>
+    @foreach (var prod in ViewBag.CategoryProduct.Associations)
+    {
+        <li>@prod.Product.ProductName</li>
+    }
+    
 </div>
 
-<form asp-action="Association" asp-controller="Association" method = "post">
+<form asp-action="ProdCatJoin" asp-controller="Category"  asp-route-categoryId="@ViewBag.CategoryDetail.CategoryId" method = "post">
     <label asp-for="ProductId"></label>
     <select asp-for="ProductId">
-        <option>Product stuff goes here</option>
+        <option value="">Select</option>
+        @foreach (Product prod in ViewBag.selectProduct)
+        {
+            <option value="@prod.ProductId">@prod.ProductName</option>
+        }
     </select>
     <button>Add</button>
 </form>
