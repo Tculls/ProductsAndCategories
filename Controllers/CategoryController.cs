@@ -16,8 +16,8 @@ public class CategoryController : Controller
     [HttpGet("/categories")]
     public IActionResult Categories()
     {
-        List<Category> categories = _context.Categories.ToList();
-        return View("Categories", categories);
+        ViewBag.categories = _context.Categories.ToList();
+        return View("AddCategory");
     }
 
     [HttpPost("categories/create")]
@@ -25,12 +25,11 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid == false)
         {
-            List<Category> categories = _context.Categories.ToList();
-            return View("Categories", categories);
+            return View("Categories");
         }
         _context.Categories.Add(newCategory);
         _context.SaveChanges();
-        return RedirectToAction("Categories");
+        return Categories();
     }
 
     [HttpGet("/categories/{categoryId}")]

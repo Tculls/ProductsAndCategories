@@ -18,9 +18,9 @@ public class HomeController : Controller
         return RedirectToAction("Products", "Product");
     }
 
-    public IActionResult Privacy()
+    public IActionResult Category()
     {
-        return View();
+        return RedirectToAction("Categories", "Category");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
