@@ -1,0 +1,18 @@
+
+@model Association
+
+<div>
+    <h2>Category name goes here</h2>
+<div>
+    <h3>Related products</h3>
+    <li>products go here</li>
+</div>
+
+<form asp-action="Association" asp-controller="Association" method = "post">
+    <label asp-for="ProductId"></label>
+    <select asp-for="ProductId">
+        <option>Product stuff goes here</option>
+    </select>
+    <button>Add</button>
+</form>
+</div>
