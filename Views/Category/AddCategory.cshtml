@@ -1,0 +1,27 @@
+@model Category
+
+<h2>New Category</h2>
+
+<div>
+<form asp-controller="Category" asp-action="CreateCategory">
+<div>
+    <label asp-for="Name"></label>
+    <span asp-validation-for="Name"></span>
+    <input asp-for="Name">
+</div>
+
+<button>Create</button>
+</form>
+
+    <div>
+        <h2>Existing Categories</h2>
+
+        @foreach (Category cat in ViewBag.categories)
+        {
+            <a
+            asp-controller="Category"
+            asp-action="Category"
+            asp-route-CategoryId="@cat.CategoryId">@cat.Name</a>
+        }
+    </div>
+</div>

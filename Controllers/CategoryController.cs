@@ -39,7 +39,7 @@ public class CategoryController : Controller
         Category? categoryDetails = _context.Categories.FirstOrDefault( cat => cat.CategoryId == categoryId);
         ViewBag.CategoryDetail = categoryDetails;
 
-        var categoryProduct = _context.Products
+        var categoryProduct = _context.Categories
         .Include(cat => cat.Associations)
         .ThenInclude(cat => cat.Product)
         .FirstOrDefault(cI => cI.CategoryId == categoryId);
@@ -51,7 +51,6 @@ public class CategoryController : Controller
         }
 
         return View("Categories");
-
 
     }
 }

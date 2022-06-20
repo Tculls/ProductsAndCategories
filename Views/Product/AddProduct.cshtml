@@ -1,0 +1,39 @@
+@model Product 
+
+<div>
+    <h2>New Product</h2>
+
+    <form asp-controller="Product" asp-action="CreateProduct" method="Post">
+    <div>
+        <label asp-for="ProductName"></label>
+        <span asp-validation-for="ProductName"></span>
+        <input asp-for="ProductName">
+    </div>
+
+    <div>
+        <label asp-for="Description"></label>
+        <span asp-validation-for="Description"></span>
+        <input asp-for="Description">
+    </div>
+
+    <div>
+        <label asp-for="Price"></label>
+        <span asp-validation-for="Price"></span>
+        <input asp-for="Price">
+    </div>
+
+    <button>Create</button>
+    </form>
+
+    <div>
+        <h2>Existing Products</h2>
+    @foreach (Product prod in ViewBag.products)
+    {
+        <a
+        asp-controller="Product"
+        asp-action="Product"
+        asp-route-productId="@prod.ProductId">@prod.ProductName</a>
+    }
+    </div>
+    
+</div>
